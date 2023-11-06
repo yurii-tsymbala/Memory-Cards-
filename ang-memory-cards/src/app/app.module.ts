@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
+import { CardCellComponent } from './components/card-cell/card-cell.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardCellComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
