@@ -1,0 +1,8 @@
+<div class="card" [@isFlipped]="card.isFlipped" (click)="toggleFlip()">
+  <div class="side front background">
+    <img src="/assets/background.png" />
+  </div>
+  <div class="side back main">
+    <img src="/assets/{{ card.imgName }}.png" />
+  </div>
+</div>
