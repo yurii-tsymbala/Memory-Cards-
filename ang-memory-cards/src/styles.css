@@ -1,0 +1,19 @@
+#board {
+  margin-left: auto;
+  margin-right: auto;
+  width: 375px;
+  height: 375px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+.card {
+  width: 120px;
+  height: 120px;
+  background-color: #f2e6e6;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
