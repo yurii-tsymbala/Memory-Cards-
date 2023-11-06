@@ -1,14 +1,3 @@
-<div id="board">
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
+<div id="board" [ngStyle]="{'--colums-count': columsCount}">
+  <card-cell *ngFor="let card of cardCells" [card]="card"></card-cell>
 </div>
