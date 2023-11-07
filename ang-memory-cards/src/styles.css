@@ -31,9 +31,14 @@
 
 .main img,
 .background img {
-  width: var(--card-width);
-  height: calc(var(--card-width) * 1.2);
+  max-width: var(--card-width);
+  max-height: calc(var(--card-width) * 1.2);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.input-disabled {
+  pointer-events: none;
+  user-select: none;
 }

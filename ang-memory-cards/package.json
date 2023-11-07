@@ -2,7 +2,8 @@
   "name": "ang-memory-cards",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve"
+    "start": "ng serve",
+    "startBuild": "ng build"
   },
   "private": true,
   "dependencies": {
