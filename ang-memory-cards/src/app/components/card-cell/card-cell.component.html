@@ -1,4 +1,11 @@
-<div class="card" [@isFlipped]="card.isFlipped" (click)="toggleFlip()">
+<div
+  class="card"
+  [ngClass]="{'input-disabled': !card.isEnabled}"
+  (@isFlipped.start)="animationStarted($event)"
+  (@isFlipped.done)="animationDone($event)"
+  [@isFlipped]="card.isFlipped"
+  (click)="toggleFlip()"
+>
   <div class="side front background">
     <img src="/assets/background.png" />
   </div>
