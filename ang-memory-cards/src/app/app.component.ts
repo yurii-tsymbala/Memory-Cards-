@@ -35,6 +35,7 @@ export class AppComponent implements OnInit, OnChanges {
   onCardClick(index: number) {
     if (this.firstFlippedIndex === -1) {
       this.firstFlippedIndex = index;
+      this.cardCells[index].isEnabled = false;
       return;
     }
     this.secondFlippedIndex = index;
