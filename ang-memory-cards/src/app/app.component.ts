@@ -43,9 +43,7 @@ export class AppComponent implements OnInit, OnChanges {
     for (const card of this.cardCells) {
       card.isEnabled = false;
     }
-    console.log(JSON.parse(JSON.stringify(this.cardCells))); 
     setTimeout(this.checkMatch, 900); 
-  
   }
 
   checkMatch = () =>  { 
