@@ -3,9 +3,10 @@ import { Card } from './model/Card';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './game.component.html'
 })
-export class AppComponent {
+
+export class GameComponent {
   columsCount: number = 3;
   cardCells: Card[] = [];
   firstFlippedIndex = -1;
