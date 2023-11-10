@@ -5,7 +5,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/model/Card';
 
 @Component({
@@ -30,7 +30,7 @@ import { Card } from 'src/app/model/Card';
     ]),
   ],
 })
-export class CardCellComponent implements OnInit {
+export class CardCellComponent {
   @Input() card!: Card;
   @Input() cardIndex!: number;
   @Output() flippedCardIndex = new EventEmitter<number>();

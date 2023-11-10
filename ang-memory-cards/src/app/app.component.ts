@@ -1,35 +1,31 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from './model/Card';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent {
   columsCount: number = 3;
   cardCells: Card[] = [];
   firstFlippedIndex = -1;
   secondFlippedIndex = -1;
 
-  ngOnInit(): void {
-    this.cardCells = [
-      new Card('penguin'),
-      new Card('crab'),
-      new Card('jellyfish'),
-      new Card('chick'),
-      new Card('frog'),
-      new Card('chick'),
-      new Card('elephant'),
-      new Card('penguin'),
-      new Card('elephant'),
-      new Card('jellyfish'),
-      new Card('crab'),
-      new Card('frog'),
-    ];
+  constructor() {
+    this.generateCards(12);
   }
 
-  ngOnChanges(): void {
-    console.log(this.cardCells);
+  getRandomAssets(assetsArray: string[], cardsAmount: number) {
+    const shuffled = [...assetsArray].sort(() => 0.5 - Math.random()).slice(0, cardsAmount);
+    const merged = shuffled.concat(shuffled.reverse()).sort(() => 0.5 - Math.random());
+    return merged
+  }
+  
+  generateCards(level: number) {
+    const cardsAmount = level / 2;
+    const assetsArray = ['chameleon', 'chick', 'crab', 'elephant', 'frog','jellyfish', 'penguin', 'sea-turtle']; // range 4-16 cards
+    const randomAssets = this.getRandomAssets(assetsArray, cardsAmount);
+    this.cardCells = randomAssets.map( asset => new Card(asset));
   }
 
   onCardClick(index: number) {
@@ -39,14 +35,14 @@ export class AppComponent implements OnInit, OnChanges {
       return;
     }
     this.secondFlippedIndex = index;
-    
+
     for (const card of this.cardCells) {
       card.isEnabled = false;
     }
-    setTimeout(this.checkMatch, 900); 
+    setTimeout(this.checkMatch, 900);
   }
 
-  checkMatch = () =>  { 
+  checkMatch = () => {
     const firstFlippedCard = this.cardCells[this.firstFlippedIndex];
     const secondFlippedCard = this.cardCells[this.secondFlippedIndex];
 
@@ -63,8 +59,8 @@ export class AppComponent implements OnInit, OnChanges {
 
     for (const card of this.cardCells) {
       card.isEnabled = !card.isFlipped;
-     }
-  }
+    }
+  };
 
   checkGameOver() {
     const unflippedCards = this.cardCells.filter((card) => !card.isFlipped);
