@@ -1,3 +1,4 @@
+<popup #popup (navNextLevel)="nextLevel()"></popup>
 <div id="board" [ngStyle]="{ '--colums-count': columsCount }">
   <card-cell
     *ngFor="let card of cardCells; let cardIndex = index"
@@ -6,4 +7,3 @@
     (flippedCardIndex)="onCardClick($event)"
   ></card-cell>
 </div>
-<button [routerLink]="['/']">Go to levels</button>

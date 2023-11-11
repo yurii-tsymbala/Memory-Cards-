@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { Card } from '../../model/Card';
 import { CardCellComponent } from '../card-cell/card-cell.component';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   standalone: true,
   selector: 'game',
   templateUrl: './game.component.html',
-  imports: [CommonModule, CardCellComponent, RouterModule]
+  imports: [CommonModule, CardCellComponent, PopupComponent, RouterModule]
 })
 
 export class GameComponent {
@@ -19,11 +20,17 @@ export class GameComponent {
   firstFlippedIndex = -1;
   secondFlippedIndex = -1;
 
+  @ViewChild('popup', { static: false }) popup!: PopupComponent;
+
   constructor() {
     this.cardsAmount = Number(this.route.snapshot.params["id"]); 
     this.generateCards(this.cardsAmount);
   }
 
+  nextLevel() {
+    this.generateCards(this.cardsAmount += 2);
+  }
+ 
   getRandomAssets(assetsArray: string[], cardsAmount: number) {
     const shuffled = [...assetsArray].sort(() => 0.5 - Math.random()).slice(0, cardsAmount);
     const merged = shuffled.concat(shuffled.reverse()).sort(() => 0.5 - Math.random());
@@ -77,6 +84,7 @@ export class GameComponent {
       return;
     } else {
       console.log('Victory! Congrats =)');
+      this.popup.open();
     }
   }
 }
