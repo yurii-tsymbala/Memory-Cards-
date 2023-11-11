@@ -36,8 +36,4 @@ export class CardCellComponent {
     this.card.isFlipped = !this.card.isFlipped;
     this.flippedCardIndex.emit(this.cardIndex);
   }
-
-  animationStarted(event: any) {}
-
-  animationDone(event: any) {}
 }
