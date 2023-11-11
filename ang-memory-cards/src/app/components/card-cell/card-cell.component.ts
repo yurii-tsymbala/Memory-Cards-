@@ -1,16 +1,13 @@
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
+import { trigger, state,style,transition, animate } from '@angular/animations';
+import { CommonModule} from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/model/Card';
 
 @Component({
+  standalone: true,
   selector: 'card-cell',
   templateUrl: './card-cell.component.html',
+  imports: [CommonModule],
   animations: [
     trigger('isFlipped', [
       state(
@@ -34,8 +31,6 @@ export class CardCellComponent {
   @Input() card!: Card;
   @Input() cardIndex!: number;
   @Output() flippedCardIndex = new EventEmitter<number>();
-
-  ngOnInit(): void {}
 
   toggleFlip() {
     this.card.isFlipped = !this.card.isFlipped;

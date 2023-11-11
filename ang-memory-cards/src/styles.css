@@ -10,6 +10,14 @@
   width: calc(var(--card-width) * var(--colums-count));
 }
 
+.level {
+  margin: 2px;
+  text-align: center;
+  justify-content: center;
+  width: var(--card-width);
+  height: var(--card-width);
+}
+
 .card {
   position: relative;
   width: var(--card-width);
@@ -33,6 +41,14 @@
 .background img {
   max-width: var(--card-width);
   max-height: calc(var(--card-width) * 1.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle img {
+  max-width: var(--card-width);
+  max-height: var(--card-width);
   display: flex;
   justify-content: center;
   align-items: center;
