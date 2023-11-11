@@ -1,0 +1,9 @@
+<div id="board" [ngStyle]="{ '--colums-count': columsCount }">
+  <card-cell
+    *ngFor="let card of cardCells; let cardIndex = index"
+    [card]="card"
+    [cardIndex]="cardIndex"
+    (flippedCardIndex)="onCardClick($event)"
+  ></card-cell>
+</div>
+<button [routerLink]="['/']">Go to levels</button>
