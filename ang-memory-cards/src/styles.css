@@ -1,7 +1,7 @@
 #board {
   display: flex;
   flex-wrap: wrap;
-
+ 
   --card-width: 80px;
   --colums-count: 3;
   margin-left: auto;
@@ -11,9 +11,9 @@
 }
 
 .level {
+  position: relative;
   margin: 2px;
   text-align: center;
-  justify-content: center;
   width: var(--card-width);
   height: var(--card-width);
 }

@@ -23,7 +23,7 @@ export class GameComponent {
   @ViewChild('popup', { static: false }) popup!: PopupComponent;
 
   constructor() {
-    this.cardsAmount = Number(this.route.snapshot.params["id"]); 
+    this.cardsAmount = Number(this.route.snapshot.params["id"]);   
     this.generateCards(this.cardsAmount);
   }
 
@@ -38,6 +38,7 @@ export class GameComponent {
   }
   
   generateCards(level: number) {
+    this.checkColumns();
     const cardsAmount = level / 2;
     const assetsArray = ['lion', 'chameleon', 'chick', 'crab', 'elephant', 'frog','jellyfish', 'penguin', 'sea-turtle'];
     const randomAssets = this.getRandomAssets(assetsArray, cardsAmount);
@@ -85,6 +86,37 @@ export class GameComponent {
     } else {
       console.log('Victory! Congrats =)');
       this.popup.open();
+    }
+  }
+
+  checkColumns() {
+    switch (this.cardsAmount) {
+      case 4:
+        this.columsCount = 2;
+        break;
+        case 6:
+        this.columsCount = 3;
+        break;
+        case 8:
+        this.columsCount = 4;
+        break;
+        case 10:
+        this.columsCount = 5;
+        break;
+        case 12:
+        this.columsCount = 4;
+        break;
+        case 14:
+        this.columsCount = 2;
+        break;
+        case 16:
+        this.columsCount = 4;
+        break;
+        case 18:
+        this.columsCount = 6;
+        break;
+        default:
+          break;
     }
   }
 }
