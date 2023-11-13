@@ -1,4 +1,3 @@
-import { trigger, state,style,transition, animate } from '@angular/animations';
 import { CommonModule} from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/model/Card';
@@ -7,25 +6,8 @@ import { Card } from 'src/app/model/Card';
   standalone: true,
   selector: 'card-cell',
   templateUrl: './card-cell.component.html',
+  styleUrls: ['./card-cell.component.css'],
   imports: [CommonModule],
-  animations: [
-    trigger('isFlipped', [
-      state(
-        'true',
-        style({
-          transform: 'rotateY(180deg)',
-        })
-      ),
-      state(
-        'false',
-        style({
-          transform: 'rotateY(0)',
-        })
-      ),
-      transition('true => false', animate('400ms ease-out')),
-      transition('false => true', animate('400ms ease-in')),
-    ]),
-  ],
 })
 export class CardCellComponent {
   @Input() card!: Card;

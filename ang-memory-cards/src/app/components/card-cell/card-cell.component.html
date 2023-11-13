@@ -1,13 +1,6 @@
-<div
-  class="card"
-  [ngClass]="{'input-disabled': !card.isEnabled}"
-  [@isFlipped]="card.isFlipped"
-  (click)="toggleFlip()"
->
-  <div class="side front background">
-    <img src="/assets/background.png" />
-  </div>
-  <div class="side back main">
-    <img src="/assets/{{ card.imgName }}.png" />
+<div class="cardWrapper" [ngClass]="{'input-disabled': !card.isEnabled}" (click)="toggleFlip()">
+  <div class="card" [ngClass]="{flipped: card.isFlipped, tinted: (!card.isEnabled && !card.isFlipped)}">
+    <img class="icon default" src="/assets/question_mark.png" />
+    <img class="icon opened" src="/assets/{{ card.imgName }}.png" />
   </div>
 </div>
