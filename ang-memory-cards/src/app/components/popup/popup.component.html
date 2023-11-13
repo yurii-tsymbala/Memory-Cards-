@@ -1,9 +1,7 @@
-<div #myModal class="container">
-    <div class="content">
-      <p style="font: x-large bolder">Congrats!</p>
-      <div class="buttonWrapper">
-        <button class="btn" (click)="levelsMenu()" [routerLink]="['/']">Home</button>
-        <button class="btn" (click)="nextLevel()">Next Level</button>
-      </div>
-    </div>
-    </div>
+<div #myModal class="popup">
+  <p class="popupText">CONGRATS!</p>
+  <div class="buttonWrapper">
+    <button class="btn blue" (click)="levelsMenu()" [routerLink]="['/']">HOME</button>
+    <button class="btn green" (click)="nextLevel()">NEXT LEVEL</button>
+  </div>
+</div>

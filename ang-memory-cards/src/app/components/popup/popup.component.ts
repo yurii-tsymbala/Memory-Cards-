@@ -1,26 +1,35 @@
-import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {
+    Component,
+    ViewChild,
+    ElementRef,
+    Output,
+    EventEmitter,
+    HostBinding,
+} from "@angular/core";
+import { RouterModule } from "@angular/router";
 
 @Component({
-  standalone: true,
-  selector: 'popup',
-  templateUrl: './popup.component.html',
-  imports: [RouterModule]
+    standalone: true,
+    selector: "popup",
+    templateUrl: "./popup.component.html",
+    styleUrls: ["./popup.component.css"],
+    imports: [RouterModule],
 })
 export class PopupComponent {
-  @ViewChild('myModal', { static: false }) popup!: ElementRef;
-  @Output() navNextLevel = new EventEmitter();
+    @ViewChild("myModal", { static: false }) popup!: ElementRef;
+    @Output() navNextLevel = new EventEmitter();
+    @HostBinding("class.hidden") hidden: boolean = true;
 
-  open() {
-    this.popup.nativeElement.style.display = 'block';
-  }
+    open() {
+        this.hidden = false;
+    }
 
-  levelsMenu() {
-    this.popup.nativeElement.style.display = 'none';
-  }
+    levelsMenu() {
+        this.hidden = true;
+    }
 
-  nextLevel() {
-    this.popup.nativeElement.style.display = 'none';
-    this.navNextLevel.emit();
-  }
+    nextLevel() {
+        this.hidden = true;
+        this.navNextLevel.emit();
+    }
 }
