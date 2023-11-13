@@ -1,3 +1,5 @@
-<div id="board" [ngStyle]="{ '--colums-count': columsCount }">
-  <level-cell *ngFor="let level of levelCells" [level]="level"></level-cell>
+<div class="levels">
+  <div class="levelsGrid" [ngStyle]="{ '--colums-count': columsCount }">
+    <level-cell *ngFor="let level of levelCells" [level]="level"></level-cell>
+  </div>
 </div>

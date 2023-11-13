@@ -1,8 +1,14 @@
 export class Level {
-  cardsAmount: number;
-  isOpened = false;
+    row: number;
+    col: number;
+    isOpened = false;
 
-  constructor(cardsAmount: number) {
-    this.cardsAmount = cardsAmount;
-  }
+    constructor(row: number, col: number) {
+        this.row = row;
+        this.col = col;
+    }
+
+    get cardsAmount(): number {
+        return this.row * this.col;
+    }
 }

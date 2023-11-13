@@ -8,10 +8,11 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   selector: 'levels',
   templateUrl: './levels.component.html',
+  styleUrls: ['./levels.component.css'],
   imports: [LevelCellComponent, CommonModule, RouterLink],
 })
 export class LevelsComponent {
-  columsCount: number = 5;
+  columsCount: number = 3;
   levelCells: Level[] = [];
 
   constructor() {
@@ -20,14 +21,15 @@ export class LevelsComponent {
 
   generateLevels() {
     this.levelCells = [
-      new Level(4),
-      new Level(6),
-      new Level(8),
-      new Level(10),
-      new Level(12),
-      new Level(14),
-      new Level(16),
-      new Level(18)
+      new Level(2, 2),
+      new Level(2, 3),
+      new Level(3, 4),
+      new Level(4, 3),
+      new Level(4, 4),
+      new Level(4, 5),
+      new Level(4, 4),
+      new Level(5, 6),
+      new Level(6, 6),
     ];
   }
 }
