@@ -7,6 +7,7 @@ import { Level } from 'src/app/model/Level';
   standalone: true,
   selector: 'level-cell',
   templateUrl: './level-cell.component.html',
+  styleUrls: ['./level-cell.component.css'],
   imports: [CommonModule, RouterLink]
 })
 export class LevelCellComponent {

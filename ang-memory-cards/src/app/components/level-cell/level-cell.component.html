@@ -1,4 +1,4 @@
-<div class="level circle" [routerLink]="['/game', level.cardsAmount]" (click)="launchGame()">
-  <div>{{ level.cardsAmount }}</div>
-  <img src="/assets/level.png" />
+<div class="level" [routerLink]="['/game', level.cardsAmount]" (click)="launchGame()">
+  <img class="starIcon" src="/assets/star.png" />
+  <div class="levelNumber">{{ level.cardsAmount }}</div>
 </div>
