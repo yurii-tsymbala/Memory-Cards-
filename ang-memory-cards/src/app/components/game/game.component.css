@@ -1,0 +1,36 @@
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+
+    --card-width: 10rem;
+    --colums-count: 3;
+
+    width: calc(var(--card-width) * var(--colums-count) + 6px + 1.2rem);
+
+    border-radius: 1rem;
+    border: 3px solid #484848;
+    padding: 0.6rem;
+    border-style: dashed;
+    background-color: #ffdfd0;
+}
+
+.backBtn {
+    position: absolute;
+    width: 5rem;
+    left: 1rem;
+    top: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
