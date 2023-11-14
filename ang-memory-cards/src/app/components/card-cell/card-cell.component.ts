@@ -1,6 +1,6 @@
 import { CommonModule} from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Card } from 'src/app/model/Card';
+import { Card } from 'src/app/models/Card';
 
 @Component({
   standalone: true,
