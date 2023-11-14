@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Level } from 'src/app/model/Level';
+import { Level } from 'src/app/models/Level';
 import { LevelCellComponent } from '../level-cell/level-cell.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { LevelService } from 'src/app/services/level.service';
 
 @Component({
   standalone: true,
@@ -15,21 +16,10 @@ export class LevelsComponent {
   columsCount: number = 3;
   levelCells: Level[] = [];
 
-  constructor() {
-    this.generateLevels();
+  constructor(private levelService: LevelService) {
+    this.levelCells = levelService.levelCells;  
+    console.log(this.levelCells);
+    
   }
 
-  generateLevels() {
-    this.levelCells = [
-      new Level(2, 2),
-      new Level(2, 3),
-      new Level(3, 4),
-      new Level(4, 3),
-      new Level(4, 4),
-      new Level(4, 5),
-      new Level(4, 4),
-      new Level(5, 6),
-      new Level(6, 6),
-    ];
-  }
 }
