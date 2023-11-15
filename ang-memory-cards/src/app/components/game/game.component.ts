@@ -19,18 +19,17 @@ export class GameComponent {
   currentLevel!: Level;
   columsCount: number = 3;
   cardCells: Card[] = [];
-  firstFlippedIndex = -1;
-  secondFlippedIndex = -1;
+  firstFlippedIndex: number = -1;
+  secondFlippedIndex: number = -1;
 
   @ViewChild('popup', { static: false }) popup!: PopupComponent;
 
-  constructor(private levelService: LevelService) {
+  constructor(private levelService: LevelService) {  
     this.currentLevel = levelService.getLevel(Number(this.route.snapshot.params['id']));
     this.generateCards(this.currentLevel);
   }
 
   nextLevel() {
-    console.log("loaded next level with" + this.currentLevel);
     this.generateCards(this.currentLevel);
   }
 
@@ -91,11 +90,9 @@ export class GameComponent {
     const secondFlippedCard = this.cardCells[this.secondFlippedIndex];
 
     if (firstFlippedCard.imgName === secondFlippedCard.imgName) {
-      console.log('Match!');
       this.firstFlippedIndex = -1;
       this.checkGameOver();
     } else {
-      console.log('No Match!');
       firstFlippedCard.isFlipped = false;
       secondFlippedCard.isFlipped = false;
       this.firstFlippedIndex = -1;
@@ -111,10 +108,8 @@ export class GameComponent {
     if (unflippedCards.length > 0) {
       return;
     } else {
-      console.log('Victory! Congrats =)');
       const nextLevel = this.levelService.getNextLevel(this.currentLevel);
       this.currentLevel = nextLevel;
-      console.log(this.currentLevel);
       this.popup.open();
     }
   }
