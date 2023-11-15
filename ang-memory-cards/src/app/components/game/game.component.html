@@ -1,5 +1,5 @@
 <div class="game">
-  <div class="board" [ngStyle]="{ '--colums-count': columsCount }">
+  <div class="board" [ngStyle]="{ '--colums-count': columsCount, '--card-width': cardSize }">
     <card-cell *ngFor="let card of cardCells; let cardIndex = index" [card]="card" [cardIndex]="cardIndex"
       (flippedCardIndex)="onCardClick($event)"></card-cell>
   </div>
