@@ -4,12 +4,13 @@ import routeConfig from './app/routes';
 import { AppComponent } from './app/app.components';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LevelService } from './app/services/level.service';
+import { CardService } from './app/services/card.service';
 
 bootstrapApplication(AppComponent, {
     providers: [
       provideRouter(routeConfig),
       provideAnimations(),
-      LevelService
+      LevelService, CardService
     ]
   })
   .catch((err) => console.error(err)); 
