@@ -18,6 +18,5 @@ export class LevelsComponent {
 
   constructor(private levelService: LevelService) {
     this.levelCells = this.levelService.levelCells;
-    console.log(JSON.parse(JSON.stringify(this.levelCells))); 
   }
 }

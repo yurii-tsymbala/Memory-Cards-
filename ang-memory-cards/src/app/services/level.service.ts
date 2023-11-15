@@ -38,17 +38,15 @@ export class LevelService {
 
   fetchLevels() {
     if (localStorage.getItem('levels')) {
-      let levels: Level[] = JSON.parse(window.localStorage.getItem('levels')!);    
-      this.levelCells = levels;
-      this.createLevels(); // delete
-      console.log("fetched");
+      const levelsData: any[] = JSON.parse(window.localStorage.getItem('levels')!);    
+
+      this.levelCells = levelsData.map(
+          (data) => new Level(data.row, data.col,true)
+      );
     } else {
       this.createLevels();
-      let startLevels = JSON.stringify(this.levelCells);
-      localStorage.setItem('levels', startLevels);
-      console.log('setup default data');
+      this.saveLevels();
     }
-    // localStorage.clear();
   }
 
   createLevels() {

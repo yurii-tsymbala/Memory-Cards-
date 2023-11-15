@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { PopupComponent } from '../popup/popup.component';
 import { Level } from 'src/app/models/Level';
 import { LevelService } from 'src/app/services/level.service';
+import { CardService } from 'src/app/services/card.service';
 
 @Component({
   standalone: true,
@@ -18,99 +19,50 @@ export class GameComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   currentLevel!: Level;
   columsCount: number = 3;
+  cardSize: string = "10rem";
   cardCells: Card[] = [];
-  firstFlippedIndex: number = -1;
-  secondFlippedIndex: number = -1;
 
   @ViewChild('popup', { static: false }) popup!: PopupComponent;
 
-  constructor(private levelService: LevelService) {  
-    this.currentLevel = levelService.getLevel(Number(this.route.snapshot.params['id']));
-    this.generateCards(this.currentLevel);
-  }
-
-  nextLevel() {
-    this.generateCards(this.currentLevel);
-  }
-
-  generateCards(level: Level) {
-    this.columsCount = level.col;
-    const assetsArray = [
-      'chameleon',
-      'chick',
-      'crab',
-      'elephant',
-      'frog',
-      'jellyfish',
-      'penguin',
-      'sea-turtle',
-      'butterfly',
-      'rabbit',
-      'crocodile',
-      'owl',
-      'squirrel',
-      'snail',
-      'squirrel',
-      'pig',
-    ];
-
-    const randomAssets = this.getRandomAssets(
-      assetsArray,
-      level.cardsAmount / 2
-    );
-    this.cardCells = randomAssets.map((asset) => new Card(asset));
-  }
-
-  getRandomAssets(assetsArray: string[], cardsAmount: number) {
-    const shuffled = [...assetsArray]
-      .sort(() => 0.5 - Math.random())
-      .slice(0, cardsAmount);
-    const merged = shuffled
-      .concat(shuffled.reverse())
-      .sort(() => 0.5 - Math.random());
-    return merged;
-  }
-
-  onCardClick(index: number) {
-    if (this.firstFlippedIndex === -1) {
-      this.firstFlippedIndex = index;
-      this.cardCells[index].isEnabled = false;
-      return;
-    }
-    this.secondFlippedIndex = index;
-
-    for (const card of this.cardCells) {
-      card.isEnabled = false;
-    }
-    setTimeout(this.checkMatch, 900);
-  }
-
-  checkMatch = () => {
-    const firstFlippedCard = this.cardCells[this.firstFlippedIndex];
-    const secondFlippedCard = this.cardCells[this.secondFlippedIndex];
-
-    if (firstFlippedCard.imgName === secondFlippedCard.imgName) {
-      this.firstFlippedIndex = -1;
-      this.checkGameOver();
-    } else {
-      firstFlippedCard.isFlipped = false;
-      secondFlippedCard.isFlipped = false;
-      this.firstFlippedIndex = -1;
-    }
-
-    for (const card of this.cardCells) {
-      card.isEnabled = !card.isFlipped;
-    }
-  };
-
-  checkGameOver() {
-    const unflippedCards = this.cardCells.filter((card) => !card.isFlipped);
-    if (unflippedCards.length > 0) {
-      return;
-    } else {
+  constructor(
+    private levelService: LevelService,
+    private cardService: CardService
+  ) {
+    this.currentLevel = this.levelService.getLevel(Number(this.route.snapshot.params['id']));
+    this.columsCount = this.currentLevel.col;
+    
+    this.cardCells = this.cardService.generateCards(this.currentLevel);
+    cardService.cardsUpdate = (cards) => {
+      this.cardCells = cards;
+    };
+    cardService.gameOver = () => {
       const nextLevel = this.levelService.getNextLevel(this.currentLevel);
       this.currentLevel = nextLevel;
       this.popup.open();
+    };
+
+    this.updateCardSize();
+  }
+
+  updateCardSize(){
+    const cardsCount =  this.currentLevel.cardsAmount;
+
+    if(cardsCount<= 12){
+      this.cardSize  = "10rem";
+    }else if(cardsCount<= 30){
+      this.cardSize  = "8rem";
+    }else{
+      this.cardSize  = "7rem";
     }
+  }
+
+  nextLevel() {
+    this.updateCardSize();
+    this.columsCount = this.currentLevel.col;
+    this.cardCells = this.cardService.generateCards(this.currentLevel);
+  }
+
+  onCardClick(index: number) {
+    this.cardService.onCardClick(index);
   }
 }
