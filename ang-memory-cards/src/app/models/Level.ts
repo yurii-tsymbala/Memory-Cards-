@@ -1,15 +1,11 @@
 export class Level {
-    row: number;
-    col: number;
-    isOpened: boolean;
+  constructor(
+    public row: number,
+    public col: number,
+    public isOpened = false
+  ) {}
 
-    constructor(row: number, col: number, isOpened = false) {
-        this.row = row;
-        this.col = col;
-        this.isOpened = isOpened;
-    }
-
-    get cardsAmount(): number {
-        return this.row * this.col;
-    }
+  get cardsAmount(): number {
+    return this.row * this.col;
+  }
 }
