@@ -49,15 +49,10 @@ export class CardService {
       'shell',
     ];
 
-    // const randomAssets = this.getRandomAssets(
-    //   assetsArray,
-    //   level.cardsAmount / 2
-    // );
-
-    const randomAssets = assetsArray.slice(0, level.cardsAmount * 0.5);
-
-    randomAssets.push(...randomAssets);
-    randomAssets.sort(() => Math.random() - 0.5);
+    const randomAssets = this.getRandomAssets(
+      assetsArray,
+      level.cardsAmount / 2
+    );
 
     this.cards = randomAssets.map((asset) => new Card(asset));
     return this.cards;
