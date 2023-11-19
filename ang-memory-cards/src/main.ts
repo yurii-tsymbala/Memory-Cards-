@@ -7,10 +7,10 @@ import { LevelService } from './app/services/level.service';
 import { CardService } from './app/services/card.service';
 
 bootstrapApplication(AppComponent, {
-    providers: [
-      provideRouter(routeConfig),
-      provideAnimations(),
-      LevelService, CardService
-    ]
-  })
-  .catch((err) => console.error(err)); 
+  providers: [
+    provideRouter(routeConfig),
+    provideAnimations(),
+    LevelService,
+    CardService,
+  ],
+}).catch((err) => console.error(err));

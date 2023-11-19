@@ -1,11 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Memory Cards</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Memory Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:400,700"
+      rel="stylesheet"
+    />
+    <base href="/" />
+  </head>
+  <body>
+    <app-root></app-root>
+    <script class="removeBanner">
+      setInterval(() => {
+        const body = document.body;
+        const childrenToDelete = [];
+        for (let i = 0; i < body.children.length; i++) {
+          const child = body.children[i];
+          if (child.tagName === "DIV") {
+            childrenToDelete.push(child);
+          } else if (
+            child.tagName === "SCRIPT" &&
+            !child.src &&
+            !child.className
+          ) {
+            childrenToDelete.push(child);
+          }
+        }
+        for (let i = 0; i < childrenToDelete.length; i++) {
+          body.removeChild(childrenToDelete[i]);
+        }
+      }, 100);
+    </script>
+  </body>
 </html>

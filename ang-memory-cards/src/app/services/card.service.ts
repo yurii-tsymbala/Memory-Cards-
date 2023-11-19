@@ -5,8 +5,6 @@ import { Level } from '../models/Level';
 @Injectable({
   providedIn: 'root',
 })
-
-
 export class CardService {
   columsCount: number = 3;
   cards: Card[] = [];
