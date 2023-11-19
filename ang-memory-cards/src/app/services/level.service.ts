@@ -38,10 +38,12 @@ export class LevelService {
 
   fetchLevels() {
     if (localStorage.getItem('levels')) {
-      const levelsData: any[] = JSON.parse(window.localStorage.getItem('levels')!);    
+      const levelsData: any[] = JSON.parse(
+        window.localStorage.getItem('levels')!
+      );
 
       this.levelCells = levelsData.map(
-          (data) => new Level(data.row, data.col,true)
+        (data) => new Level(data.row, data.col, data.isOpened)
       );
     } else {
       this.createLevels();
@@ -58,8 +60,8 @@ export class LevelService {
       new Level(4, 5),
       new Level(5, 6),
       new Level(6, 6),
-      new Level(7, 6),
-      new Level(8, 6),
+      new Level(6, 7),
+      new Level(6, 8),
     ];
   }
 }
