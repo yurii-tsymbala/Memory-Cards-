@@ -1,45 +1,50 @@
 .level {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10rem;
-    height: 10rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cell-size);
+  height: var(--cell-size);
 
-    border-radius: 1rem;
-    border: 3px solid #484848;
-    border-style: dashed;
-    transition: all 0.15s ease;
+  border-radius: 1rem;
+  border: 3px dashed #484848;
+  transition: transform 0.15s ease;
 
-    margin: var(--card-margin);
+  margin: var(--cell-margin);
 
-    cursor: pointer;
+  cursor: pointer;
+}
 
-    &:hover {
-        transform: scale(1.05);
-        background-color: #ffdfd0;
-    }
+.level:hover {
+  transform: scale(1.05);
+  background-color: #ffdfd0;
+}
 
-    &.input-disabled {
-        pointer-events: none;
-        user-select: none;
-    }
-    &.tinted {
-        filter: brightness(0.7);
-     }
+.level.input-disabled {
+  pointer-events: none;
+  user-select: none;
+}
+
+.level.tinted {
+  filter: brightness(0.7);
 }
 
 .starIcon {
-    position: absolute;
-    width: 90%;
-    height: 90%;
+  position: absolute;
+  width: 90%;
+  height: 90%;
+}
+
+.lockIcon {
+  position: absolute;
+  width: 40%;
+  height: 40%;
 }
 
 .levelNumber {
-    position: absolute;
-    color: black;
-    font-family: cursive;
-    font-size: 2.5rem;
-    font-weight: bolder;
-    margin-top: 0.7rem;
+  position: absolute;
+  color: black;
+  font-size: calc(var(--cell-size) * 0.3);
+  font-weight: bolder;
+  margin-top: 0.2rem;
 }
