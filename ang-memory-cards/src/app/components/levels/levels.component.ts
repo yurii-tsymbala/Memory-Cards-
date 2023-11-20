@@ -4,6 +4,7 @@ import { LevelCellComponent } from '../level-cell/level-cell.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LevelService } from 'src/app/services/level.service';
+import { getGridCellSize } from 'src/app/utils';
 
 @Component({
   standalone: true,
@@ -15,8 +16,19 @@ import { LevelService } from 'src/app/services/level.service';
 export class LevelsComponent {
   columsCount: number = 3;
   levelCells: Level[] = [];
+  cellSize: string = getGridCellSize(3, 3);
 
   constructor(private levelService: LevelService) {
     this.levelCells = this.levelService.levelCells;
+
+    window.addEventListener('resize', this.updateSize);
+  }
+
+  updateSize = () => {
+    this.cellSize = getGridCellSize(3, 3);
+  };
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.updateSize);
   }
 }

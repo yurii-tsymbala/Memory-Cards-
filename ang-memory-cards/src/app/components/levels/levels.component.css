@@ -1,24 +1,24 @@
 .levels {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .levelsGrid {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-    --card-width: 10rem;
-    --card-margin: 0.5rem;
-    --colums-count: 3;
+  --cell-size: 10rem;
+  --cell-margin: calc(var(--cell-size) * 0.05);
+  --colums-count: 3;
 
-    width: calc(
-        var(--card-width) * var(--colums-count) + var(--card-margin) *
-            (var(--colums-count) + 1) * 2 + 6px + 1.2rem
-    );
+  width: calc(
+    var(--cell-size) * var(--colums-count) + var(--cell-margin) *
+      (var(--colums-count) + 1) * 2 + 1.5rem
+  );
 
-    border-radius: 1rem;
-    padding: 0.6rem;
+  border-radius: 1rem;
+  padding: 0.6rem;
 }
