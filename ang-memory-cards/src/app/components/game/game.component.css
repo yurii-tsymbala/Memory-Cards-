@@ -28,8 +28,8 @@
   top: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+}
 
-  &:hover {
-    filter: brightness(0.8);
-  }
+.backBtn:hover {
+  filter: brightness(0.8);
 }
