@@ -8,13 +8,13 @@ import { Level } from 'src/app/models/Level';
   selector: 'level-cell',
   templateUrl: './level-cell.component.html',
   styleUrls: ['./level-cell.component.css'],
-  imports: [CommonModule, RouterLink]
+  imports: [CommonModule, RouterLink],
 })
 export class LevelCellComponent {
   @Input() level!: Level;
   @Output() launchGameLevel = new EventEmitter<number>();
 
-  launchGame() {    
+  launchGame() {
     this.launchGameLevel.emit(this.level.cardsAmount);
   }
 }
