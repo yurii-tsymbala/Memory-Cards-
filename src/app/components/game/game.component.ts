@@ -17,7 +17,6 @@ import { getGridCellSize } from 'src/app/utils';
   imports: [CommonModule, CardCellComponent, PopupComponent, RouterModule],
 })
 export class GameComponent {
-  route: ActivatedRoute = inject(ActivatedRoute);
   currentLevel!: Level;
   columsCount: number = 3;
   cardSize: string = '10rem';
@@ -27,7 +26,8 @@ export class GameComponent {
 
   constructor(
     private levelService: LevelService,
-    private cardService: CardService
+    private cardService: CardService,
+    private route: ActivatedRoute,
   ) {
     this.currentLevel = this.levelService.getLevel(
       Number(this.route.snapshot.params['id'])
