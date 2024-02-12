@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LevelsComponent } from './components/levels/levels.component';
+import { LevelsComponent } from '../levels/levels.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
