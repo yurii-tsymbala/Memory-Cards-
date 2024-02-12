@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Level } from 'src/app/models/Level';
 
@@ -12,9 +12,6 @@ import { Level } from 'src/app/models/Level';
 })
 export class LevelCellComponent {
   @Input() level!: Level;
-  @Output() launchGameLevel = new EventEmitter<number>();
 
-  launchGame() {
-    this.launchGameLevel.emit(this.level.cardsAmount);
-  }
+  launchGame() {}
 }

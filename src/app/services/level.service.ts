@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Level } from '../models/Level';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LevelService {
-  levelCells: Level[] = [];
+  levelCells = new BehaviorSubject<Level[]>([]);
 
   constructor() {
     this.fetchLevels();
@@ -13,20 +14,20 @@ export class LevelService {
 
   getLevel(cardsAmount: number): Level {
     return (
-      this.levelCells.find((level) => level.cardsAmount === cardsAmount) ??
-      this.levelCells[this.levelCells.length]
+      this.levelCells.getValue().find((level) => level.cardsAmount === cardsAmount) ??
+      this.levelCells.getValue()[this.levelCells.getValue().length]
     );
   }
 
   getNextLevel(currentlevel: Level) {
-    let currentLevelId = this.levelCells.findIndex(
+    let currentLevelId = this.levelCells.getValue().findIndex(
       (level) => level === currentlevel
     );
-    this.levelCells[currentLevelId + 1].isOpened = true;
+    this.levelCells.getValue()[currentLevelId + 1].isOpened = true;
     this.saveLevels();
     return (
-      this.levelCells[currentLevelId + 1] ??
-      this.levelCells[this.levelCells.length]
+      this.levelCells.getValue()[currentLevelId + 1] ??
+      this.levelCells.getValue()[this.levelCells.getValue().length]
     );
   }
 
@@ -42,8 +43,8 @@ export class LevelService {
         window.localStorage.getItem('levels')!
       );
 
-      this.levelCells = levelsData.map(
-        (data) => new Level(data.row, data.col, data.isOpened)
+      this.levelCells.next(
+        levelsData.map((data) => new Level(data.row, data.col, data.isOpened))
       );
     } else {
       this.createLevels();
@@ -52,7 +53,7 @@ export class LevelService {
   }
 
   createLevels() {
-    this.levelCells = [
+    this.levelCells.next([
       new Level(2, 2, true),
       new Level(2, 3),
       new Level(3, 4),
@@ -62,6 +63,6 @@ export class LevelService {
       new Level(6, 6),
       new Level(6, 7),
       new Level(6, 8),
-    ];
+    ]);
   }
 }
