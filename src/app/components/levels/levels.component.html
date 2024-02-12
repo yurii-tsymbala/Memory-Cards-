@@ -3,6 +3,6 @@
     class="levelsGrid"
     [ngStyle]="{ '--colums-count': columsCount, '--cell-size': cellSize }"
   >
-    <level-cell *ngFor="let level of levelCells$ | async" [level]="level"></level-cell>
+    <level-cell *ngFor="let level of levelCells" [level]="level"></level-cell>
   </div>
 </div>
